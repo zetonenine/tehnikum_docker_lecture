@@ -1,5 +1,5 @@
 
-ПОДТЯНУТЬ ОБРАЗ POSTGRES ПРОДЕМОНСТРИРОВАТЬ РАБОТУ КОНТЕЙНЕРА
+ПОДТЯНУТЬ ОБРАЗ POSTGRES
 
 # подтянуть образа postgres 14-й версии с DockerHub
 docker pull postgres:14
@@ -18,7 +18,6 @@ docker ps
 
 
 
-ПОКАЗАТЬ ЧТО ВНУТРИ КОНТЕЙНЕРА РАБОТАЕТ POSTGRES
 
 # подключиться к Bash внутри контейнера
 docker exec -it postgres bash
@@ -63,7 +62,6 @@ docker-compose down
 
 # запустить определенный образ в docker-compose.yaml
 docker-compose up -d redis
-
 
 
 
