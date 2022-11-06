@@ -1,0 +1,54 @@
+version: '3.8'
+
+services:
+  database:
+    image: postgres:14
+    container_name: "database"
+    restart: always
+    ports:
+      - 5432:5432
+    volumes:
+      - ./tmp/postgres-db-volume:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: tehnikum
+      POSTGRES_USER: tehnikum
+      POSTGRES_DB: tehnikum
+    networks:
+      - network
+
+  redis:
+    image: redis:7
+    container_name: "redis"
+    ports:
+      - 6379:6379
+    healthcheck:
+      test: [ "CMD", "redis-cli", "ping" ]
+      interval: 5s
+      timeout: 30s
+      retries: 50
+    restart: always
+    networks:
+      - network
+
+  web_server:
+     image: web_server
+     ports:
+       - 127.0.0.1:5000:5000
+     build:
+       context: .
+       dockerfile: Dockerfile
+     container_name: "web_server"
+     restart: always
+     networks:
+       - network
+     depends_on:
+       - database
+       - redis
+
+volumes:
+  postgres-db-volume:
+
+networks:
+  network:
+    driver: bridge
+    name: my-network

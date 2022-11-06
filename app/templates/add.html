@@ -1,0 +1,12 @@
+{% block PAGE_TITLE %}
+    {{ title or 'Book Store' }}
+{% endblock %}
+
+{%- block PAGE_CONTENT %}
+    <div>
+        <h1>
+            The book {{ book }} was added to our Database
+        </h1>
+    </div>
+
+{% endblock -%}

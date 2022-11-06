@@ -1,0 +1,12 @@
+{% block PAGE_TITLE %}
+    {{ title or 'Book Store' }}
+{% endblock %}
+
+{%- block PAGE_CONTENT %}
+    <div>
+        <h1>
+            Hello, this page was opened {{ count }} times
+        </h1>
+    </div>
+
+{% endblock -%}
