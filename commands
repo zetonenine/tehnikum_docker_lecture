@@ -1,0 +1,84 @@
+
+ПОДТЯНУТЬ ОБРАЗ POSTGRES ПРОДЕМОНСТРИРОВАТЬ РАБОТУ КОНТЕЙНЕРА
+
+# подтянуть образа postgres 14-й версии с DockerHub
+docker pull postgres:14
+
+# получить список образов локально
+docker images
+
+# запустить контейнер образа postgres 14й версии
+docker run --name postgres -e POSTGRES_USER=tehnikum -e POSTGRES_PASSWORD=tehnikum -e POSTGRES_DB=tehnikum -p 5432:5432 postgres:14
+
+# или запустить контейнер образа postgres в фоновом режиме
+docker run --name postgres -e POSTGRES_USER=tehnikum -e POSTGRES_PASSWORD=tehnikum -e POSTGRES_DB=tehnikum -d -p 5432:5432 postgres:14
+
+# получить список запущенных контейнеров
+docker ps
+
+
+
+ПОКАЗАТЬ ЧТО ВНУТРИ КОНТЕЙНЕРА РАБОТАЕТ POSTGRES
+
+# подключиться к Bash внутри контейнера
+docker exec -it postgres bash
+
+# подключиться к базе данных через строку (-U пользователь, -d Название базы данных)
+psql -U tehnikum -d tehnikum
+
+# показать текущую бд
+\c
+
+# показать таблицы текущей бд
+\dt
+
+# создать таблицу
+CREATE TABLE test (price INTEGER);
+
+
+
+# список нерабочих контейнеров
+docker ps -a
+
+# запустить контейнер с именем postgres
+docker start postgres
+
+# получить список запущенных контейнеров
+docker ps
+
+# остановить контейнер с именем postgres
+docker stop postgres
+
+# запустить контейнер redis и postgres в фоновом режиме
+docker run --name redis -p 6379:6379 -d redis:7
+docker run --name postgres -e POSTGRES_USER=tehnikum -e POSTGRES_PASSWORD=tehnikum -e POSTGRES_DB=tehnikum -d -p 5432:5432 postgres:14
+
+
+
+# запустить образы в docker-compose.yaml
+docker-compose up -d
+
+# оставновить образы в docker-compose.yaml
+docker-compose down
+
+# запустить определенный образ в docker-compose.yaml
+docker-compose up -d redis
+
+
+
+
+
+# запустить web-server
+docker-compose up -d web_server
+
+# остановить контейнер
+docker stop web_server
+
+# удалить контейнер
+docker rm web_server
+
+# удалить образ (докер не даёт удалить образ, если к нему привязаны контейнеры)
+docker image rm web_server
+
+# запушить образ на удаленный репозиторий
+docker push
