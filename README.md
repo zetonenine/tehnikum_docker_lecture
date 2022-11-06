@@ -1,5 +1,11 @@
 # tehnikum_docker_lecture
 
+## Install local
+Clone repo
+```bash
+$ git clone https://github.com/zetonenine/tehnikum_docker_lecuture.git
+```
+
 ## Setup
 1. Install virtualenv
 ```bash
